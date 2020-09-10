@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Vote
+from .models import Vote,Candidate
+from django.http import JsonResponse
 # Create your views here.
 
 def index(request):
@@ -32,12 +33,13 @@ def count_vote(request):
 
 def results(request):
     title=request.GET.get("title")
+    result_candidate=[]
     candidates=[]
+    results=Vote.objects.all().count()
     if title:
-        vote_candidates=Vote.objects.filter(title=title).values_list('name')
-        for candidate in vote_candidates:
-            candidates.append(candidate)
-        first_candidate=candidates[0]
-        second_candidate=candidates[1]        
+        for i in Candidate.objects.filter(title=title):
+            result_candidate.append((Vote.objects.filter(name=i.name)))
+            candidates.append({"candidate":i.name})
+        return JsonResponse({"success":True,"message":{"candidate":candidates,"result":result_candidate},"total_votes":results})
     else:
         return HttpResponse("Error Viewing Results Please Check Arguments")
