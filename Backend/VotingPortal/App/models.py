@@ -14,6 +14,11 @@ class Vote(models.Model):
 class Candidate(models.Model):
     title=models.TextField()
     name=models.TextField()
+    vote = models.IntegerField()
 
     def __str__(self):
         return self.name
+
+class Election(models.Model):
+    name=models.TextField()
+    
