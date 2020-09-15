@@ -1,0 +1,82 @@
+@charset "utf-8";
+/* CSS Document */
+
+@font-face {
+	font-family: 'LR';
+	src: url(../fonts/LibreBarcode128Text-Regular.ttf);
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'IT';
+	src: url(../fonts/Inconsolata-Thin.ttf);
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'IL';
+	src: url(../fonts/Inconsolata-Light.ttf);
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'IR';
+	src: url(../fonts/Inconsolata-Regular.ttf);
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'IM';
+	src: url(../fonts/Inconsolata-Medium.ttf);
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'IB';
+	src: url(../fonts/Inconsolata-Bold.ttf);
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'IBL';
+	src: url(../fonts/Inconsolata-Black.ttf);
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'GGT';
+	src: url(../fonts/GrenzeGotisch-Thin.ttf);
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'GGL';
+	src: url(../fonts/GrenzeGotisch-Light.ttf);
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'GGR';
+	src: url(../fonts/GrenzeGotisch-Regular.ttf);
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'GGM';
+	src: url(../fonts/GrenzeGotisch-Medium.ttf);
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'GGB';
+	src: url(../fonts/GrenzeGotisch-Bold.ttf);
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'GGBL';
+	src: url(../fonts/GrenzeGotisch-Black.ttf);
+	font-weight: normal;
+	font-style: normal;
+}
