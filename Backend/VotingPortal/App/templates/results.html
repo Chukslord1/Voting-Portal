@@ -1,0 +1,147 @@
+{% load static %}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport"/>
+  <title>
+   THSOSA
+  </title>
+  <link href="{% static 'assets/img/gr8dreams-logo.png' %}" rel="icon" type="image/png"/>
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css"/>
+  <link href="{% static 'assets/css/fonts.css' %}" rel="stylesheet" type="text/css">
+   <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" type="text/css"/>
+   <link href="{% static 'assets/css/owl_theme.css' %}" rel="stylesheet" type="text/css"/>
+   <link href="{% static 'assets/css/owl.carousel.min.css' %}" rel="stylesheet" type="text/css"/>
+   <link href="{% static 'assets/css/owl.theme.default.min.css' %}" rel="stylesheet" type="text/css"/>
+   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet"/>
+   <script src="{% static 'assets/js/jquery-1.8.2.js' %}" type="text/javascript">
+   </script>
+   <script src="{% static 'assets/js/jquery-scrolltofixed.js' %}" type="text/javascript">
+   </script>
+   <script src="{% static 'assets/js/prefixfree-1.0.7.js' %}" type="text/javascript">
+   </script>
+   <script src="{% static 'assets/js/script.js' %}" type="text/javascript">
+   </script>
+   <script src="{% static 'assets/js/owl.carousel.min.js' %}" type="text/javascript">
+   </script>
+   <script src="{% static 'assets/js/jquery.flexslider-min.js' %}" type="text/javascript">
+   </script>
+  </link>
+ </head>
+ <body>
+  <div class="clearfix" id="main_wrapper">
+   <div class="header">
+    <div class="hdr clearfix">
+     <div class="menu_icon">
+      <div class="burger_icon">
+       <span class="burger_bar_top">
+       </span>
+       <span class="burger_bar_middle">
+       </span>
+       <span class="burger_bar_bottom">
+       </span>
+      </div>
+      <div class="menu_text">
+       Menu
+      </div>
+     </div>
+     <div class="brandname">
+      <a href="">
+       THSOSA
+      </a>
+     </div>
+     <div class="menu">
+      <ul>
+       <li>
+        <a href="index.html">
+         Home
+        </a>
+       </li>
+       <li>
+        <a href="candidates.html">
+         Candidates
+        </a>
+       </li>
+       <li>
+        <a href="activity.html">
+         Voter Activity
+        </a>
+       </li>
+       <li>
+        <a href="results.html">
+         Results
+        </a>
+       </li>
+       <li>
+        <a href="login.html">
+         Login
+        </a>
+       </li>
+       <li>
+        <a href="register.html">
+         Register
+        </a>
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+   <div class="body-wrap">
+    <div class="section">
+     <div class="inner_wrap">
+      <div class="pg-hdr-card clearfix">
+       <div class="col-1">
+        <div class="hdr-title">
+         Final Results
+        </div>
+        <div class="row">
+         <span>
+          Votes Closed:
+         </span>
+         26/10/2020 04:30PM GMT+1
+        </div>
+       </div>
+       <div class="col-2">
+        THSOSA DECIDES
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="section">
+     <div class="inner_wrap">
+      <div class="candidate-card">
+       <div class="position-desc">
+        The next President is...
+       </div>
+       <div class="cand-wrap results-wrap clearfix">
+         {% for item in results %}
+        <div class="cand-hld clearfix">
+         <div class="cand-avatar">
+          <img src="{{item.image.url}}"/>
+         </div>
+         <div class="cand-name">
+          {{item.name}}
+         </div>
+         <div class="v-det clearfix">
+          <div class="v-bar">
+           <div class="v-progress" style="width: {{item.percent}}%;">
+           </div>
+          </div>
+          <div class="v-per">
+           {{item.percent}}%
+          </div>
+          <div class="v-count">
+           {{item.vote}} votes
+          </div>
+         </div>
+        </div>
+        {% endfor %}
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

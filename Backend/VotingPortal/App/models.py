@@ -14,11 +14,12 @@ class Vote(models.Model):
 class Candidate(models.Model):
     title=models.TextField()
     name=models.TextField()
-    vote = models.IntegerField()
+    vote = models.IntegerField(default='0')
+    percent=models.IntegerField(default='0')
+    image=models.ImageField()
 
     def __str__(self):
         return self.name
 
 class Election(models.Model):
     name=models.TextField()
-    
