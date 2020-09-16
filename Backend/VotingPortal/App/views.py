@@ -46,9 +46,10 @@ def register(request):
                 user.save()
                 profile=UserProfile.objects.create(user=user,username=username,phone=phone)
                 profile.save()
-                return HttpResponse("registered successfully")
+                return redirect("login.html")
         else:
-            return redirect("login.html")
+            context={"message":"password dont match"}
+            return render(request,"register.html",context)
     else:
         return render(request,"register.html")
 
