@@ -36,6 +36,77 @@
      border-radius:100%;
      background-color:blue;
  }
+ /* Bordered form */
+form {
+  border: 3px solid #f1f1f1;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+/* Avatar image */
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+}
+
+/* The "Forgot password" text */
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+  .cancelbtn {
+    width: 100%;
+  }
+}
 </style>
  <body>
   <div class="clearfix" id="main_wrapper">
@@ -62,26 +133,6 @@
      <div class="menu">
       <ul>
        <li>
-        <a href="index.html">
-         Home
-        </a>
-       </li>
-       <li>
-        <a href="candidates.html">
-         Candidates
-        </a>
-       </li>
-       <li>
-        <a href="activity.html">
-         Voter Activity
-        </a>
-       </li>
-       <li>
-        <a href="results.html">
-         Results
-        </a>
-       </li>
-       <li>
         <a href="login.html">
          Login
         </a>
@@ -98,68 +149,29 @@
    <div class="body-wrap">
     <div class="section">
      <div class="inner_wrap">
-      <div class="pg-hdr-card clearfix">
-       <div class="col-1">
-        <div class="hdr-title">
-         The Candidates
-        </div>
-        <div class="row">
-         <span>
-          Voting Start:
-         </span>
-        {% for time in times %}{{time.start}}{% endfor %}
-        </div>
-        <div class="row">
-         <span>
-          Voting Close:
-         </span>
-        {% for time in times %}{{time.end}}{% endfor %}
-        </div>
-        <div class="row">
-         <span>
-          Instruction:
-         </span>
-         Please view the positions and choices and make your selections.
-        </div>
-       </div>
-       <div class="col-2">
-        THSOSA DECIDES
-       </div>
-      </div>
-     </div>
-    </div>
-    <div class="section">
-     <div class="inner_wrap">
-      <div class="candidate-card">
-      {% for election in elections %}
-       <div class="position-desc">
-        Who do you want to be the next {{election.name}}?
-       </div>
-       {{message}}
-       <div class="cand-wrap clearfix">
-         {% for candidate in candidates %}
-         {% if candidate.title == election.name %}
-         <form id="{{candidate.name}}myform" method="POST">
-           {% csrf_token %}
-           <input type="hidden" name="name" value="{{candidate.name}}"/>
-           <input type="hidden" name="title" value="{{candidate.title}}"/>
-        </form>
-         <a href="#" onclick='document.forms["myform"].submit(); return false;'></a>
-        <div class="cand-hld" href="#" onclick='document.forms["{{candidate.name}}myform"].submit(); return false;'>
-         <div class="decision">
-         </div>
-         <div class="cand-avatar">
-          <img src="{{candidate.image.url}}"/>
-         </div>
-         <div class="cand-name">
-          {{candidate.name}}
-         </div>
-        </div>
-    {% endif %}
-    {% endfor %}
-       </div>
-       {% endfor %}
-      </div>
+       <form  method="POST">
+         {% csrf_token %}
+  <div class="imgcontainer">
+    <img width="300" height="300" src="{% static 'media/img_avatar2.png' %}" alt="Avatar" class="avatar">
+  </div>
+
+  <div class="container">
+    <label for="username"><b>Phone Number</b></label>
+    <input type="text" placeholder="Enter Username" name="phone" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required>
+
+    <button type="submit">Login</button>
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+    <center><b>{{message}}</b></center>
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div>
+  <div class="container" style="background-color:#f1f1f1">
+  </div>
+</form>
      </div>
     </div>
    </div>

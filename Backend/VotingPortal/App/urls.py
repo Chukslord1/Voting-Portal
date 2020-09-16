@@ -7,9 +7,9 @@ app_name = "APP"
 
 urlpatterns = [
 
-    path("", views.index, name="index"),
+    path("", views.login, name="login"),
     path("candidates.html", views.create_vote, name="create_vote"),
-    path("results", views.results, name="results"),
-    path("login", views.login, name="login"),
-    path("register", views.register, name="register")
+    path("results.html", views.results, name="results"),
+    path("login.html", views.login, name="login"),
+    path("register.html", views.register, name="register")
 ]

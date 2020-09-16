@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import Vote,Candidate,Election
+from .models import Vote,Candidate,Election,Time,UserProfile
 from django.http import JsonResponse
 from django.contrib.auth.models import User, auth
 from django.db.models import Sum
+import datetime
+from datetime import timezone
 # Create your views here.
 
 def index(request):
@@ -11,76 +13,95 @@ def index(request):
 
 
 def login(request):
-    if request.method == 'GET':
-        username = request.GET['username']
-        password = request.GET['password']
+    if request.method == 'POST':
+        phone = request.POST['phone']
+        password = request.POST['password']
+        username=UserProfile.objects.get(phone=phone).username
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            return HttpResponse("you are Logged In ")
+            return redirect("candidates.html")
         else:
-            return HttpResponse("Invalid Credentials")
+            context={"message":"Invalid login credentials"}
+            return render(request,"login.html",context)
     else:
-        return HttpResponse("not valid request method")
+        return render(request,"login.html")
 
 def register(request):
-    if request.method=="GET":
-        username = request.GET['username']
-        email = request.GET['email']
-        password1 = request.GET['password1']
-        password2 = request.GET['password2']
+    if request.method=="POST":
+        name= request.POST['name']
+        phone=request.POST['phone']
+        username = request.POST['username']
+        email = request.POST['email']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
 
         if password1 == password2:
-            if User.objects.filter(email=email).exists() or User.objects.filter(username=username).exists():
-                return HttpResponse("user already exists")
+            if UserProfile.objects.filter(phone=phone).exists() or User.objects.filter(username=username).exists():
+                context={"message":"user already exists"}
+                return render(request,"register.html",context)
             else:
-                user = User.objects.create(username=username, password=password1, email=email)
+                user = User.objects.create(username=username,first_name=name,password=password1, email=email)
                 user.set_password(user.password)
                 user.save()
+                profile=UserProfile.objects.create(user=user,username=username,phone=phone)
+                profile.save()
                 return HttpResponse("registered successfully")
         else:
-            return HttpResponse("confirm password does not match")
+            return redirect("login.html")
     else:
-        return HttpResponse("not valid request method")
+        return render(request,"register.html")
 
 
 def create_vote(request):
+    context={"elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all()}
     if request.user.is_authenticated:
-        title=request.GET.get("title")
-        name=request.GET.get("name")
         if request.method=="POST":
+            title=request.POST.get("title")
+            name=request.POST.get("name")
             if Candidate.objects.filter(name__icontains=name):
-                name=request.GET.get("name")
+                name=request.POST.get("name")
             else:
                 return HttpResponse("NO SUCH CANDIDATE AVAILABLE")
             if Election.objects.filter(name__icontains=title):
-                title=request.GET.get("title")
+                title=request.POST.get("title")
             else:
                 return HttpResponse("NO SUCH ELECTION AVAILABLE")
             user=str(request.user)
             if Vote.objects.filter(title=title,user=user).count()<1:
-                vote=Vote.objects.create(title=title,name=name,user=user)
-                vote.save()
-                vote_add=Candidate.objects.get(name=name).vote
-                number=int(vote_add)+1
-                vote_new=Candidate.objects.get(name=name)
-                vote_new.vote=number
-                vote_new.save()
-                vote_count=Vote.objects.filter(title=title).count()
-                vote_count_percent=Candidate.objects.all()
-                for i in vote_count_percent:
-                    vote_count_percent_save=Candidate.objects.get(name=i.name)
-                    number_all=i.vote
-                    percent=(number_all/vote_count)*100
-                    vote_count_percent_save.percent=percent
-                    vote_count_percent_save.save()
-                return HttpResponse("Done")
+                if datetime.datetime.now(timezone.utc)>Time.objects.get().start and datetime.datetime.now(timezone.utc)<Time.objects.get().end:
+                    vote=Vote.objects.create(title=title,name=name,user=user)
+                    vote.save()
+                    vote_add=Candidate.objects.get(name=name).vote
+                    number=int(vote_add)+1
+                    vote_new=Candidate.objects.get(name=name)
+                    vote_new.vote=number
+                    vote_new.save()
+                    vote_count=Vote.objects.filter(title=title).count()
+                    vote_count_percent=Candidate.objects.all()
+                    for i in vote_count_percent:
+                        vote_count_percent_save=Candidate.objects.get(name=i.name)
+                        number_all=i.vote
+                        percent=(number_all/vote_count)*100
+                        vote_count_percent_save.percent=percent
+                        vote_count_percent_save.save()
+
+                    context={"message":"vote  placed","elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all()}
+                    return render(request,"candidates.html",context)
+                elif datetime.datetime.now(timezone.utc)>Time.objects.get().end:
+                    context={"message": "Voting Closed","elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all()}
+                    return render(request,"candidates.html",context)
+                else:
+                    print("hello")
+                    context={"message":"vote  time not yet","elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all()}
+                    return render(request,"candidates.html",context)
             elif Vote.objects.filter(title=title,user=user).count()>0:
-                return HttpResponse("You have already voted in this category")
+                context={"message":"You have already voted in this category","elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all()}
+                return render(request,"candidates.html",context)
             else:
                 return HttpResponse("Error Creating Vote Please Check Arguments")
         else:
-            return render(request,"candidates.html")
+            return render(request,"candidates.html",context)
     else:
         return HttpResponse("You are not logged in")
 

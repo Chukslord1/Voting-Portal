@@ -127,7 +127,7 @@ html {
 	top: 50%;
 	left: 0;
 }
-.header .hdr .menu_icon .menu_text,  
+.header .hdr .menu_icon .menu_text,
 .header .hdr .menu_icon .burger_icon {
 	display: inline-block;
 	vertical-align: middle;
@@ -148,8 +148,8 @@ html {
 	overflow: hidden;
 	position: relative;
 }
-.header .hdr .menu_icon .burger_icon .burger_bar_top,  
-.header .hdr .menu_icon .burger_icon .burger_bar_middle,  
+.header .hdr .menu_icon .burger_icon .burger_bar_top,
+.header .hdr .menu_icon .burger_icon .burger_bar_middle,
 .header .hdr .menu_icon .burger_icon .burger_bar_bottom {
 	background: #a2a09f;
 	width: 100%;
@@ -314,7 +314,7 @@ html {
 }
 .v-act .v-det .v-bar .v-progress {
 	height: 100%;
-	background: linear-gradient(#74b04d, #a3cd8a, #30864a);  
+	background: linear-gradient(#74b04d, #a3cd8a, #30864a);
 }
 .v-act .v-det .v-per {
 	width: 6%;
@@ -381,7 +381,7 @@ html {
 }
 .results-wrap .cand-hld .v-bar .v-progress {
 	height: 100%;
-	background: linear-gradient(#74b04d, #a3cd8a, #30864a);  
+	background: linear-gradient(#74b04d, #a3cd8a, #30864a);
 }
 .results-wrap .cand-hld .v-det .v-per {
 	width: 6%;
