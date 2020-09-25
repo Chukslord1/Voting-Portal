@@ -10,6 +10,7 @@ urlpatterns = [
     path("", views.login, name="login"),
     path("candidates.html", views.create_vote, name="create_vote"),
     path("results.html", views.results, name="results"),
+    path("activity.html", views.activity, name="activity"),
     path("login.html", views.login, name="login"),
     path("register.html", views.register, name="register")
 ]

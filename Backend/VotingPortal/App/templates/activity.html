@@ -115,74 +115,25 @@
         Who will be the next President?
        </div>
        <div class="cand-wrap v-act clearfix">
+         {% for item in results %}
         <div class="cand-hld">
          <div class="cand-name">
-          Amir Seilsepour
+          {{item.name}}
          </div>
          <div class="v-det clearfix">
           <div class="v-bar">
-           <div class="v-progress" style="width: 40%;">
+           <div class="v-progress" style="width: {{item.percent}}%;">
            </div>
           </div>
           <div class="v-per">
-           40%
+          {{item.percent}}%
           </div>
           <div class="v-count">
-           20 votes
+           {{item.vote}}votes
           </div>
          </div>
         </div>
-        <div class="cand-hld">
-         <div class="cand-name">
-          Art Hauntington
-         </div>
-         <div class="v-det clearfix">
-          <div class="v-bar">
-           <div class="v-progress" style="width: 28%;">
-           </div>
-          </div>
-          <div class="v-per">
-           28%
-          </div>
-          <div class="v-count">
-           12 votes
-          </div>
-         </div>
-        </div>
-        <div class="cand-hld">
-         <div class="cand-name">
-          Jorge Vicuna
-         </div>
-         <div class="v-det clearfix">
-          <div class="v-bar">
-           <div class="v-progress" style="width: 12%;">
-           </div>
-          </div>
-          <div class="v-per">
-           12%
-          </div>
-          <div class="v-count">
-           5 votes
-          </div>
-         </div>
-        </div>
-        <div class="cand-hld">
-         <div class="cand-name">
-          Mohamed Nohassi
-         </div>
-         <div class="v-det clearfix">
-          <div class="v-bar">
-           <div class="v-progress" style="width: 20%;">
-           </div>
-          </div>
-          <div class="v-per">
-           20%
-          </div>
-          <div class="v-count">
-           10 votes
-          </div>
-         </div>
-        </div>
+        {% endfor %}
        </div>
       </div>
      </div>

@@ -106,7 +106,9 @@ def create_vote(request):
     else:
         return HttpResponse("You are not logged in")
 
-
+def activity(request):
+    context={"results":Candidate.objects.filter(title__icontains="president")}
+    return render(request,"activity.html",context)
 
 def results(request):
     context={"results":Candidate.objects.filter(title__icontains="president")}
