@@ -100,6 +100,7 @@ def create_vote(request):
                 context={"message":"You have already voted in this category","elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all()}
                 return render(request,"candidates.html",context)
             else:
+                print("hello world")
                 return HttpResponse("Error Creating Vote Please Check Arguments")
         else:
             return render(request,"candidates.html",context)
