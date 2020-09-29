@@ -147,6 +147,7 @@
          <a href="#" onclick='document.forms["myform"].submit(); return false;'></a>
         <div class="cand-hld" href="#" onclick='document.forms["{{candidate.name}}myform"].submit(); return false;'>
          <div class="decision">
+           <input type="checkbox" name="vote" value="{{candidate.name}}"/>
          </div>
          <div class="cand-avatar">
           <img src="{{candidate.image.url}}"/>

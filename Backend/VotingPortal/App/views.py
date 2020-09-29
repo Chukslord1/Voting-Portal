@@ -55,7 +55,7 @@ def register(request):
 
 
 def create_vote(request):
-    context={"elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all()}
+    context={"elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all(),"voted":Vote.objects.filter(user=request.user,)}
     if request.user.is_authenticated:
         if request.method=="POST":
             title=request.POST.get("title")
