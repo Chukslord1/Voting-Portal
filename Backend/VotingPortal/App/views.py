@@ -27,6 +27,7 @@ def login(request):
     else:
         return render(request,"login.html")
 
+
 def register(request):
     if request.method=="POST":
         name= request.POST['name']
@@ -55,7 +56,7 @@ def register(request):
 
 
 def create_vote(request):
-    context={"elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all(),"voted":Vote.objects.filter(user=request.user,)}
+    context={"elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all(),"voted":Vote.objects.filter(user=request.user)}
     if request.user.is_authenticated:
         if request.method=="POST":
             title=request.POST.get("title")
@@ -87,17 +88,17 @@ def create_vote(request):
                         vote_count_percent_save.percent=percent
                         vote_count_percent_save.save()
 
-                    context={"message":"vote  placed","elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all()}
+                    context={"message":"vote  placed","elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all(),"voted":Vote.objects.filter(user=request.user)}
                     return render(request,"candidates.html",context)
                 elif datetime.datetime.now(timezone.utc)>Time.objects.get().end:
-                    context={"message": "Voting Closed","elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all()}
+                    context={"message": "Voting Closed","elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all(),"voted":Vote.objects.filter(user=request.user)}
                     return render(request,"candidates.html",context)
                 else:
                     print("hello")
-                    context={"message":"vote  time not yet","elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all()}
+                    context={"message":"vote  time not yet","elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all(),"voted":Vote.objects.filter(user=request.user)}
                     return render(request,"candidates.html",context)
             elif Vote.objects.filter(title=title,user=user).count()>0:
-                context={"message":"You have already voted in this category","elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all()}
+                context={"message":"You have already voted in this category","elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all(),"voted":Vote.objects.filter(user=request.user)}
                 return render(request,"candidates.html",context)
             else:
                 print("hello worldl")
@@ -107,9 +108,11 @@ def create_vote(request):
     else:
         return HttpResponse("You are not logged in")
 
+
 def activity(request):
     context={"results":Candidate.objects.filter(title__icontains="president")}
     return render(request,"activity.html",context)
+
 
 def results(request):
     context={"results":Candidate.objects.filter(title__icontains="president")}

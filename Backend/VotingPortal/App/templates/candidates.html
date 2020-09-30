@@ -146,9 +146,17 @@
         </form>
          <a href="#" onclick='document.forms["myform"].submit(); return false;'></a>
         <div class="cand-hld" href="#" onclick='document.forms["{{candidate.name}}myform"].submit(); return false;'>
+          {% for i in voted %}
+          {% if candidate.name == i.name %}
          <div class="decision">
-           <input type="checkbox" name="vote" value="{{candidate.name}}"/>
+           <input type="checkbox" name="vote" value="{{candidate.name}}" checked/>
          </div>
+         {% else %}
+         <div class="decision">
+           <input type="checkbox" name="vote" value="{{candidate.name}}" />
+         </div>
+         {% endif %}
+         {% endfor %}
          <div class="cand-avatar">
           <img src="{{candidate.image.url}}"/>
          </div>
