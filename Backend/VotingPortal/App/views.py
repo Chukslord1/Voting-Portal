@@ -9,6 +9,7 @@ from datetime import timezone
 # Create your views here.
 
 def index(request):
+    honduras="happy hactober"
     return HttpResponse("Hello World")
 
 
@@ -16,7 +17,10 @@ def login(request):
     if request.method == 'POST':
         phone = request.POST['phone']
         password = request.POST['password']
-        username=UserProfile.objects.get(phone=phone).username
+        if UserProfile.objects.filter(phone=phone):
+            username=UserProfile.objects.get(phone=phone).username
+        else:
+            username=''
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
@@ -47,6 +51,8 @@ def register(request):
                 user.save()
                 profile=UserProfile.objects.create(user=user,username=username,phone=phone)
                 profile.save()
+                def_vote=Vote.objects.create(user=username,name="0000",title="0000")
+                def_vote.save()
                 return redirect("login.html")
         else:
             context={"message":"password dont match"}
