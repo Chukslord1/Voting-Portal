@@ -1,0 +1,441 @@
+{% load static %}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport"/>
+  <title>
+   THSOSA
+  </title>
+  <link href="{% static 'assets/img/gr8dreams-logo.png' %}" rel="icon" type="image/png"/>
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css"/>
+  <link href="assets/css/fonts.css" rel="stylesheet" type="text/css">
+   <link href="assets/css/responsive.css" rel="stylesheet" type="text/css"/>
+   <link href="assets/css/owl_theme.css" rel="stylesheet" type="text/css"/>
+   <link href="assets/css/owl.carousel.min.css" rel="stylesheet" type="text/css"/>
+   <link href="assets/css/owl.theme.default.min.css" rel="stylesheet" type="text/css"/>
+   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet"/>
+   <script src="assets/js/jquery-1.8.2.js" type="text/javascript">
+   </script>
+   <script src="assets/js/jquery-scrolltofixed.js" type="text/javascript">
+   </script>
+   <script src="assets/js/prefixfree-1.0.7.js" type="text/javascript">
+   </script>
+   <script src="assets/js/script.js" type="text/javascript">
+   </script>
+   <script src="assets/js/owl.carousel.min.js" type="text/javascript">
+   </script>
+   <script src="assets/js/jquery.flexslider-min.js" type="text/javascript">
+   </script>
+  </link>
+ </head>
+ <style>
+ body {
+   font-family: Arial;
+   font-size: 17px;
+   padding: 8px;
+ }
+
+ * {
+   box-sizing: border-box;
+ }
+
+ .row {
+   display: -ms-flexbox; /* IE10 */
+   display: flex;
+   -ms-flex-wrap: wrap; /* IE10 */
+   flex-wrap: wrap;
+   margin: 0 -16px;
+ }
+
+ .col-25 {
+   -ms-flex: 25%; /* IE10 */
+   flex: 25%;
+ }
+
+ .col-50 {
+   -ms-flex: 50%; /* IE10 */
+   flex: 50%;
+ }
+
+ .col-75 {
+   -ms-flex: 75%; /* IE10 */
+   flex: 75%;
+ }
+
+ .col-25,
+ .col-50,
+ .col-75 {
+   padding: 0 16px;
+ }
+
+ .container {
+   background-color: #f2f2f2;
+   padding: 5px 20px 15px 20px;
+   border: 1px solid lightgrey;
+   border-radius: 3px;
+ }
+
+ input[type=text] {
+   width: 100%;
+   margin-bottom: 20px;
+   padding: 12px;
+   border: 1px solid #ccc;
+   border-radius: 3px;
+ }
+
+ label {
+   margin-bottom: 10px;
+   display: block;
+ }
+
+ .icon-container {
+   margin-bottom: 20px;
+   padding: 7px 0;
+   font-size: 24px;
+ }
+
+ .btn {
+   background-color: #4CAF50;
+   color: white;
+   padding: 12px;
+   margin: 10px 0;
+   border: none;
+   width: 100%;
+   border-radius: 3px;
+   cursor: pointer;
+   font-size: 17px;
+ }
+
+ .btn:hover {
+   background-color: #45a049;
+ }
+
+ a {
+   color: #2196F3;
+ }
+
+ hr {
+   border: 1px solid lightgrey;
+ }
+
+ span.price {
+   float: right;
+   color: grey;
+ }
+
+ /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+ @media (max-width: 800px) {
+   .row {
+     flex-direction: column-reverse;
+   }
+   .col-25 {
+     margin-bottom: 20px;
+   }
+ }
+ </style>
+ <body>
+  <div class="clearfix" id="main_wrapper">
+   <div class="header">
+    <div class="hdr clearfix">
+     <div class="menu_icon">
+      <div class="burger_icon">
+       <span class="burger_bar_top">
+       </span>
+       <span class="burger_bar_middle">
+       </span>
+       <span class="burger_bar_bottom">
+       </span>
+      </div>
+      <div class="menu_text">
+       Menu
+      </div>
+     </div>
+     <div class="brandname">
+      <a href="">
+       THSOSA
+      </a>
+     </div>
+     <div class="menu">
+      <ul>
+       <li>
+        <a href="">
+         Candidates Registration
+        </a>
+       </li>
+      </ul>
+     </div>
+    </div>
+   </div>
+   <div class="body-wrap">
+    <div class="section">
+     <div class="inner_wrap">
+       <!DOCTYPE html>
+<html>
+  <head>
+    <title>Bank Customer Feedback Form</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      body, div, form, input, select {
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #666;
+      line-height: 22px;
+      }
+      h1, h4 {
+      margin: 15px 0 4px;
+      font-weight: 400;
+      }
+      h4 {
+      margin: 20px 0 4px;
+      font-weight: 400;
+      }
+      span {
+      color: red;
+      }
+      .small {
+      font-size: 10px;
+      line-height: 18px;
+      }
+      .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 3px;
+      }
+      form {
+      width: 100%;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 2px 5px #ccc;
+      }
+      input {
+      width: calc(100% - 10px);
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      vertical-align: middle;
+      }
+      input:hover, textarea:hover, select:hover {
+      outline: none;
+      border: 1px solid #095484;
+      background: #e6eef7;
+      }
+      .title-block select, .title-block input {
+      margin-bottom: 10px;
+      }
+      select {
+      padding: 7px 0;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      background: transparent;
+      }
+      select, table {
+      width: 100%;
+      }
+      option {
+      background: #fff;
+      }
+      .day-visited, .time-visited {
+      position: relative;
+      }
+      input[type="date"]::-webkit-inner-spin-button {
+      display: none;
+      }
+      input[type="time"]::-webkit-inner-spin-button {
+      margin: 2px 22px 0 0;
+      }
+      .day-visited i, .time-visited i, input[type="date"]::-webkit-calendar-picker-indicator {
+      position: absolute;
+      top: 8px;
+      font-size: 20px;
+      }
+      .day-visited i, .time-visited i {
+      right: 5px;
+      z-index: 1;
+      color: #a9a9a9;
+      }
+      [type="date"]::-webkit-calendar-picker-indicator {
+      right: 0;
+      z-index: 2;
+      opacity: 0;
+      }
+      .question-answer label {
+      display: block;
+      padding: 0 20px 10px 0;
+      }
+      .question-answer input {
+      width: auto;
+      margin-top: -2px;
+      }
+      th, td {
+      width: 18%;
+      padding: 15px 0;
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+      vertical-align: unset;
+      line-height: 18px;
+      font-weight: 400;
+      word-break: break-all;
+      }
+      .first-col {
+      width: 25%;
+      text-align: left;
+      }
+      textarea {
+      width: calc(100% - 6px);
+      }
+      .btn-block {
+      margin-top: 20px;
+      text-align: center;
+      }
+      button {
+      width: 150px;
+      padding: 10px;
+      border: none;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      background-color: #095484;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      background-color: #0666a3;
+      }
+      @media (min-width: 568px) {
+      .title-block {
+      display: flex;
+      justify-content: space-between;
+      }
+      .title-block select {
+      width: 30%;
+      margin-bottom: 0;
+      }
+      .title-block input {
+      width: 31%;
+      margin-bottom: 0;
+      }
+      th, td {
+      word-break: keep-all;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="testbox">
+      <form method="POST">
+        {% csrf_token %}
+        <h1>THSOSA CANDIDATE REGISTRATION FORM</h1>
+        <h4>Candidate Info<span>*</span></h4>
+        <h4>Name<span>*</span></h4>
+        <div class="title-block">
+          <select>
+            <option value="title" selected>Title</option>
+            <option value="ms">Ms</option>
+            <option value="miss">Miss</option>
+            <option value="mrs">Mrs</option>
+            <option value="mr">Mr</option>
+          </select>
+          <input class="name" type="text" name="name" placeholder="Last Name" />
+          <input class="name" type="text" name="name" placeholder="Other names" />
+        </div>
+        <h4>Address<span>*</span></h4>
+        <input type="text" name="name" />
+        <h4>Sex<span>*</span></h4>
+        <select>
+          <option value="male"> Male</option>
+          <option value="Female">Female</option>
+        </select required>
+        <h4>Date of Birth<span>*</span></h4>
+        <input type="date" name="dob" />
+        <h4>Occupation<span>*</span></h4>
+        <input type="text" name="name" />
+        <h4>Email Address<span>*</span></h4>
+        <input type="text" name="name" />
+        <h4>Contact Number<span>*</span></h4>
+        <input type="text" name="name"/>
+          <h4>Educational Qualifications</h4>
+        <input type="text" name="name"/>
+        <h4>THSOSA CHAPTER<span>*</span></h4>
+        <select>
+            <option value="abuja">Abuja</option>
+            <option value="lagos">Lagos</option>
+            <option value="port harcourt">Port Harcourt</option>
+            <option value="warri">Warri</option>
+            <option value="benin">Benin</option>
+            <option value="asaba">Asaba</option>
+        </select>
+        <h4>Year of Registration with Chapter</h4>
+        <input type="text" name="name"/>
+        <h4>Are YOU An Executive of A Chapter?</h4>
+        <select>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <h4>If Yes, What Executive Officer?</h4>
+        <input type="text" name="name"/>
+        <h4>Are You A Financial Member?</h4>
+        <select>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <h4>Have You Been Attending Meetings Up to 70% in your Chapter?</h4>
+        <select>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <h4>Have You Been Indicated For Acts of Dishonesty Before Now?</h4>
+        <select>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <h4>Kindly select the Appropriate Executive Position being contested from the options below: </h4>
+        President
+        <input name="position" value="president" type="radio"/>
+        Vice-President
+        <input name="position" value="vice-president" type="radio"/>
+        Secretary General
+        <input name="position" value="vice-president" type="radio"/>
+        Assistant Secretary
+        <input name="position" value="assistant secretary" type="radio"/>
+        Financial Secretary
+        <input name="position" value="financial secretary" type="radio"/>
+        Assitant-Financial Secretary
+        <input name="position" value="assistant financial secretary" type="radio"/>
+        Treasurer
+        <input name="position" value="treasurer" type="radio"/>
+        Public Relations Officer
+        <input name="position" value="public relations officer" type="radio"/>
+        Social/Welfare Officer
+        <input name="position" value="social/welfare officer" type="radio"/>
+        Provost 1
+        <input name="position" value="provost 1" type="radio"/>
+        Provost 2
+        <input name="position" value="provost 2" type="radio"/>
+        EX-Officio 1
+        <input name="position" value="ex-officio 1" type="radio"/>
+        EX-Officio 2
+        <input name="position" value="ex-officio 2" type="radio"/>
+        <div class="btn-block">
+          <button type="submit">Register</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

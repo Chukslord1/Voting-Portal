@@ -123,3 +123,5 @@ def activity(request):
 def results(request):
     context={"results":Candidate.objects.filter(title__icontains="president")}
     return render(request,"results.html",context)
+def candidate_reg(request):
+    return render(request,"candidate_reg.html")
