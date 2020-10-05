@@ -78,6 +78,10 @@
 
  input[type=text] {
    width: 100%;
+
+ }
+ input[type=date] {
+   width: 100%;
    margin-bottom: 20px;
    padding: 12px;
    border: 1px solid #ccc;
@@ -247,13 +251,10 @@
       .day-visited, .time-visited {
       position: relative;
       }
-      input[type="date"]::-webkit-inner-spin-button {
-      display: none;
-      }
       input[type="time"]::-webkit-inner-spin-button {
       margin: 2px 22px 0 0;
       }
-      .day-visited i, .time-visited i, input[type="date"]::-webkit-calendar-picker-indicator {
+      .day-visited i, .time-visited i, input[type="dates"]::-webkit-calendar-picker-indicator {
       position: absolute;
       top: 8px;
       font-size: 20px;
@@ -263,7 +264,7 @@
       z-index: 1;
       color: #a9a9a9;
       }
-      [type="date"]::-webkit-calendar-picker-indicator {
+      [type="dates"]::-webkit-calendar-picker-indicator {
       right: 0;
       z-index: 2;
       opacity: 0;
@@ -330,44 +331,111 @@
       }
       }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      function payWithPaystack(){
+      var handler = PaystackPop.setup({
+        key: 'pk_test_2e6c36e35df589cd45c15eca59189df5e3fcc1af',
+        email: "chukslord1@gmail.com",
+        amount: 300000,
+        ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+        metadata: {
+           custom_fields: [
+              {
+                  display_name: "chukslord1",
+                  variable_name: "Afriproperty Basic Subscription Package",
+                  value: "+2348012345678"
+              }
+           ]
+        },
+        callback: function(response){
+            alert('success. transaction ref is ' + response.reference);
+            document.getElementById('candidate_form').submit();
+          },
+        onClose: function(){
+            alert('window closed');
+        }
+      });
+      handler.openIframe();
+    }
+  function myFunction() {
+    const newDiv = document.getElementById("testbox");
+    var x = document.createElement("INPUT");
+    x.setAttribute("type", "text");
+    x.setAttribute("name", "education",);
+    x.setAttribute("placeholder", "Other Qualifications");
+    newDiv.appendChild(x);
+  }
+  $(document).ready(function() {
+    $('#replace').keyup(function() {
+       $('#example').html($(this).val());
+    });
+});
+$(function () {
+        $("#replace",).bind("change keyup",
+  function () {
+      if ($("#replace").val()!= "")
+          $(this).closest("form").find("#myP").removeAttr("style");
+      else
+          $(this).closest("form").find("#myP").attr("disabled", "disabled");
+      });
+        });
+window.onload = function () {
+  var form = document.getElementById('candidate_form');
+  form.button.onclick = function (){
+    for(var i=0; i < form.elements.length; i++){
+      if(form.elements[i].value === '' && form.elements[i].hasAttribute('required')){
+        alert('There are some required fields!');
+        return false;
+      }
+    }
+    form.submit();
+  };
+};
+  </script>
   </head>
+
   <body>
     <div class="testbox">
-      <form method="POST">
+      <form  id="candidate_form" method="POST">
         {% csrf_token %}
         <h1>THSOSA CANDIDATE REGISTRATION FORM</h1>
         <h4>Candidate Info<span>*</span></h4>
+
         <h4>Name<span>*</span></h4>
         <div class="title-block">
-          <select>
-            <option value="title" selected>Title</option>
+          <select id="title" name="title">
+            <option value="">Title</option>
             <option value="ms">Ms</option>
             <option value="miss">Miss</option>
             <option value="mrs">Mrs</option>
             <option value="mr">Mr</option>
           </select>
-          <input class="name" type="text" name="name" placeholder="Last Name" />
-          <input class="name" type="text" name="name" placeholder="Other names" />
+          <input id="surname" class="name" type="text" name="lastname" placeholder="Last Name" />
+          <input id="othername" class="name" type="text" name="othername" placeholder="Other names" />
         </div>
         <h4>Address<span>*</span></h4>
-        <input type="text" name="name" />
+        <input id="address" type="text" name="address" />
         <h4>Sex<span>*</span></h4>
-        <select>
+        <select id="sex" name="sex">
           <option value="male"> Male</option>
           <option value="Female">Female</option>
         </select required>
         <h4>Date of Birth<span>*</span></h4>
-        <input type="date" name="dob" />
+        <input id="dob" type="date" name="dob" />
         <h4>Occupation<span>*</span></h4>
-        <input type="text" name="name" />
+        <input id="occupation" type="text" name="occupation" />
         <h4>Email Address<span>*</span></h4>
-        <input type="text" name="name" />
+        <input id="email" type="text" name="email" />
         <h4>Contact Number<span>*</span></h4>
-        <input type="text" name="name"/>
-          <h4>Educational Qualifications</h4>
-        <input type="text" name="name"/>
+        <input id="phone" type="text" name="phone"/>
+        <h4>Educational Qualifications</h4>
+        <input id="education" type="text" name="education"/>
+        <button type="button" onclick="myFunction()">add other qualifications<i class="fa fa-plus" aria-hidden="true"></i></button>
+        <div id="testbox"><br></div>
         <h4>THSOSA CHAPTER<span>*</span></h4>
-        <select>
+        <select id="chapter" name="chapter">
+            <option value="" selected>Not Selected</option>
             <option value="abuja">Abuja</option>
             <option value="lagos">Lagos</option>
             <option value="port harcourt">Port Harcourt</option>
@@ -376,32 +444,36 @@
             <option value="asaba">Asaba</option>
         </select>
         <h4>Year of Registration with Chapter</h4>
-        <input type="text" name="name"/>
+        <input id="chapter_year" type="text" name="chapter_year"/>
         <h4>Are YOU An Executive of A Chapter?</h4>
-        <select>
+        <select id="executive" name="executive">
+          <option value="" selected>Not Selected</option>
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
         <h4>If Yes, What Executive Officer?</h4>
-        <input type="text" name="name"/>
+        <input type="text" name="executive_officer"/>
         <h4>Are You A Financial Member?</h4>
-        <select>
+        <select id="financial" name="financial">
+          <option value="" selected>Not Selected</option>
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
         <h4>Have You Been Attending Meetings Up to 70% in your Chapter?</h4>
-        <select>
+        <select id="attendance" name="attendance">
+          <option value="" selected>Not Selected</option>
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
         <h4>Have You Been Indicated For Acts of Dishonesty Before Now?</h4>
-        <select>
+        <select id="dishonesty" name="dishonesty">
+          <option value="" selected>Not Selected</option>
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
         <h4>Kindly select the Appropriate Executive Position being contested from the options below: </h4>
         President
-        <input name="position" value="president" type="radio"/>
+        <input name="position" value="president" type="radio" checked/>
         Vice-President
         <input name="position" value="vice-president" type="radio"/>
         Secretary General
@@ -426,8 +498,18 @@
         <input name="position" value="ex-officio 1" type="radio"/>
         EX-Officio 2
         <input name="position" value="ex-officio 2" type="radio"/>
+        Image
+        <input name="image" type="file" accept="image/x-png,image/gif,image/jpeg"/>
+        <h4>ATTESTATION BY CANDIDATE</h4>
+        <h4><b>I, <a id="example">..........................................................................</a> do hereby declare that the information I have provided above are true and made in good faith, and all documents attached herewith are genuine. If for any reason the information I have provided or facts contained in the documents attached here with are found to be false or misleading, it automatically disqualifies me from participating in the 2020 THSOSA General Elections. </b></h4>
+        <h4>Enter Your Full Name</h4>
+        <input id="replace" type="text" name="whatever" />
         <div class="btn-block">
-          <button type="submit">Register</button>
+          <input type="submit" style="visibility:hidden;"></input>
+          <script src="https://js.paystack.co/v1/inline.js"></script>
+          <button id="myP" type="button" style="visibility:hidden;" class="button" onclick="payWithPaystack()">
+         Pay With Paystack
+        </button>
         </div>
       </form>
     </div>
