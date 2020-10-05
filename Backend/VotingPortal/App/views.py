@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import Vote,Candidate,Election,Time,UserProfile
+from .models import Vote,Candidate,Election,Time,UserProfile,Candidate_Reg
 from django.http import JsonResponse
 from django.contrib.auth.models import User, auth
 from django.db.models import Sum
@@ -124,4 +124,29 @@ def results(request):
     context={"results":Candidate.objects.filter(title__icontains="president")}
     return render(request,"results.html",context)
 def candidate_reg(request):
-    return render(request,"candidate_reg.html")
+    if request.method=="POST":
+        title=request.POST.get("title")
+        lastname=request.POST.get("lastname")
+        othername=request.POST.get("othername")
+        address=request.POST.get("address")
+        sex=request.POST.get("sex")
+        date_of_birth=request.POST.get("dob")
+        occupation=request.POST.get("occupation")
+        email=request.POST.get("email")
+        phone=request.POST.get("phone")
+        education=request.POST.get("education")
+        chapter=request.POST.get("chapter")
+        chapter_year=request.POST.get("chapter_year")
+        executive_status=request.POST.get("executive")
+        executive_officer=request.POST.get("executive_officer")
+        financial=request.POST.get("financial")
+        attendance_status=request.POST.get("attendance_status")
+        dishonesty_status=request.POST.get("dishonesty")
+        position=request.POST.get("position")
+        image=request.FILES.get("image")
+        candidate_reg=Candidate_Reg.objects.create(title=title,last_name=lastname,other_name=othername,address=address,sex=sex,date_of_birth=date_of_birth,occupation=occupation,email=email,phone=phone,education=education,chapter=chapter,chapter_year=chapter_year,executive_status=executive_status,executive_officer=executive_officer,financial=financial,attendance_status=attendance_status,dishonesty_status=dishonesty_status,position=position,image=image)
+        candidate_reg.save()
+        context={"message":"Your Registration Is Successful...Please await an Email From Us in A Few Days Time"}
+        return render(request,"candidate_reg.html",context)
+    else:
+        return render(request,"candidate_reg.html")

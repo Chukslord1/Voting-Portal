@@ -333,36 +333,73 @@
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-      function payWithPaystack(){
-      var handler = PaystackPop.setup({
-        key: 'pk_test_2e6c36e35df589cd45c15eca59189df5e3fcc1af',
-        email: "chukslord1@gmail.com",
-        amount: 300000,
-        ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
-        metadata: {
-           custom_fields: [
-              {
-                  display_name: "chukslord1",
-                  variable_name: "Afriproperty Basic Subscription Package",
-                  value: "+2348012345678"
-              }
-           ]
-        },
-        callback: function(response){
-            alert('success. transaction ref is ' + response.reference);
-            document.getElementById('candidate_form').submit();
-          },
-        onClose: function(){
-            alert('window closed');
-        }
-      });
-      handler.openIframe();
+    function payWithPaystack(){
+      if (document.getElementById("president").checked == true){
+      var amount=300000;
+    } else if (document.getElementById("vice-president").checked == true){
+      var amount=250000;
+    } else if (document.getElementById("secretary-general").checked == true){
+      var amount=200000;
+    }else if (document.getElementById("assistant-secretary").checked == true){
+      var amount=150000;
+    }else if (document.getElementById("financial-secretary").checked == true){
+      var amount=130000;
     }
+    else if (document.getElementById("assistant-financial-secretary").checked == true){
+      var amount=120000;
+    }
+    else if (document.getElementById("treasurer").checked == true){
+      var amount=110000;
+    }
+    else if (document.getElementById("public-relations-officer").checked == true){
+      var amount=100000;
+    }
+    else if (document.getElementById("social-welfare-officer").checked == true){
+      var amount=90000;
+    }
+    else if (document.getElementById("provost_1").checked == true){
+      var amount=80000;
+    }
+    else if (document.getElementById("provost_2").checked == true){
+      var amount=70000;
+    }
+    else if (document.getElementById("ex-officio-1").checked == true){
+      var amount=60000;
+    }
+    else if (document.getElementById("ex-officio-2").checked == true){
+      var amount=50000;
+    }
+     else {
+      var amount="";
+    }
+var handler = PaystackPop.setup({
+  key: 'pk_test_2e6c36e35df589cd45c15eca59189df5e3fcc1af',
+  email: "chukslord1@gmail.com",
+  amount: amount,
+  ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+  metadata: {
+     custom_fields: [
+        {
+            display_name: "chukslord1",
+            variable_name: "Afriproperty Basic Subscription Package",
+            value: "+2348012345678"
+        }
+     ]
+  },
+  callback: function(response){
+      alert('success. transaction ref is ' + response.reference);
+      document.getElementById('candidate_form').submit();
+    },
+  onClose: function(){
+      alert('window closed');
+  }
+});
+handler.openIframe();
+}
   function myFunction() {
     const newDiv = document.getElementById("testbox");
     var x = document.createElement("INPUT");
     x.setAttribute("type", "text");
-    x.setAttribute("name", "education",);
     x.setAttribute("placeholder", "Other Qualifications");
     newDiv.appendChild(x);
   }
@@ -397,8 +434,9 @@ window.onload = function () {
 
   <body>
     <div class="testbox">
-      <form  id="candidate_form" method="POST">
+      <form  id="candidate_form" action="{% url 'APP:candidate_reg' %}" enctype="multipart/form-data" method="POST">
         {% csrf_token %}
+        <h2 style="color:red;">{{message}}</h2>
         <h1>THSOSA CANDIDATE REGISTRATION FORM</h1>
         <h4>Candidate Info<span>*</span></h4>
 
@@ -473,31 +511,31 @@ window.onload = function () {
         </select>
         <h4>Kindly select the Appropriate Executive Position being contested from the options below: </h4>
         President
-        <input name="position" value="president" type="radio" checked/>
+        <input id="president" name="position" value="president" type="radio" checked/>
         Vice-President
-        <input name="position" value="vice-president" type="radio"/>
+        <input id="vice-president" name="position" value="vice-president" type="radio"/>
         Secretary General
-        <input name="position" value="vice-president" type="radio"/>
+        <input id="secretary-general" name="position" value="vice-president" type="radio"/>
         Assistant Secretary
-        <input name="position" value="assistant secretary" type="radio"/>
+        <input id="assistant-secretary" name="position" value="assistant secretary" type="radio"/>
         Financial Secretary
-        <input name="position" value="financial secretary" type="radio"/>
-        Assitant-Financial Secretary
-        <input name="position" value="assistant financial secretary" type="radio"/>
+        <input id="financial-secretary" name="position" value="financial secretary" type="radio"/>
+        Assistant-Financial Secretary
+        <input id="assistant-secretary" name="position" value="assistant financial secretary" type="radio"/>
         Treasurer
-        <input name="position" value="treasurer" type="radio"/>
+        <input id="treasurer" name="position" value="treasurer" type="radio"/>
         Public Relations Officer
-        <input name="position" value="public relations officer" type="radio"/>
+        <input id="public-relations-officer" name="position" value="public relations officer" type="radio"/>
         Social/Welfare Officer
-        <input name="position" value="social/welfare officer" type="radio"/>
+        <input id="social-welfare-officer" name="position" value="social/welfare officer" type="radio"/>
         Provost 1
-        <input name="position" value="provost 1" type="radio"/>
+        <input id="provost_1" name="position" value="provost 1" type="radio"/>
         Provost 2
-        <input name="position" value="provost 2" type="radio"/>
+        <input id="provost_2" name="position" value="provost 2" type="radio"/>
         EX-Officio 1
-        <input name="position" value="ex-officio 1" type="radio"/>
+        <input id="ex-officio-1" name="position" value="ex-officio 1" type="radio"/>
         EX-Officio 2
-        <input name="position" value="ex-officio 2" type="radio"/>
+        <input id="ex-officio-2" name="position" value="ex-officio 2" type="radio"/>
         Image
         <input name="image" type="file" accept="image/x-png,image/gif,image/jpeg"/>
         <h4>ATTESTATION BY CANDIDATE</h4>
