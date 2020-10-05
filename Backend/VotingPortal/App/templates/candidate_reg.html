@@ -139,39 +139,7 @@
  }
  </style>
  <body>
-  <div class="clearfix" id="main_wrapper">
-   <div class="header">
-    <div class="hdr clearfix">
-     <div class="menu_icon">
-      <div class="burger_icon">
-       <span class="burger_bar_top">
-       </span>
-       <span class="burger_bar_middle">
-       </span>
-       <span class="burger_bar_bottom">
-       </span>
-      </div>
-      <div class="menu_text">
-       Menu
-      </div>
-     </div>
-     <div class="brandname">
-      <a href="">
-       THSOSA
-      </a>
-     </div>
-     <div class="menu">
-      <ul>
-       <li>
-        <a href="">
-         Candidates Registration
-        </a>
-       </li>
-      </ul>
-     </div>
-    </div>
-   </div>
-   <div class="body-wrap">
+
     <div class="section">
      <div class="inner_wrap">
        <!DOCTYPE html>
@@ -467,10 +435,16 @@ window.onload = function () {
         <input id="email" type="text" name="email" />
         <h4>Contact Number<span>*</span></h4>
         <input id="phone" type="text" name="phone"/>
+        <h4>Year Of Admission Into THS</h4>
+        <input id="admisson_date" type="date" name="admission_date"/>
+        <h4>Year Of Graduation From THS</h4>
+        <input id="graduation_date" type="date" name="graduation_date date"/>
+        <h4>Profile(Tell Us About Yourself)</h4>
+        <textarea id="profile" name="profile" rows="4" cols="50"></textarea>
         <h4>Educational Qualifications</h4>
         <input id="education" type="text" name="education"/>
-        <button type="button" onclick="myFunction()">add other qualifications<i class="fa fa-plus" aria-hidden="true"></i></button>
         <div id="testbox"><br></div>
+        <button type="button" onclick="myFunction()">add other qualifications<i class="fa fa-plus" aria-hidden="true"></i></button>
         <h4>THSOSA CHAPTER<span>*</span></h4>
         <select id="chapter" name="chapter">
             <option value="" selected>Not Selected</option>
@@ -551,8 +525,6 @@ window.onload = function () {
         </div>
       </form>
     </div>
-  </body>
-</html>
      </div>
     </div>
    </div>

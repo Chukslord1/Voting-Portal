@@ -37,6 +37,7 @@ class UserProfile(models.Model):
 
 class Candidate_Reg(models.Model):
     title=models.TextField(null=True,blank=True)
+    profile=models.TextField(null=True,blank=True)
     last_name=models.TextField(null=True,blank=True)
     other_name=models.TextField(null=True,blank=True)
     address=models.TextField(null=True,blank=True)
@@ -45,6 +46,8 @@ class Candidate_Reg(models.Model):
     occupation=models.TextField(null=True,blank=True)
     email=models.TextField(null=True,blank=True)
     phone=models.TextField(null=True,blank=True)
+    admission_date=models.TextField(null=True,blank=True)
+    graduation_date=models.TextField(null=True,blank=True)
     education=models.TextField(null=True,blank=True)
     chapter=models.TextField(null=True,blank=True)
     chapter_year=models.TextField(null=True,blank=True)
