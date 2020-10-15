@@ -82,6 +82,11 @@
         </a>
        </li>
        <li>
+        <a href="voters-approved">
+         Voters
+        </a>
+       </li>
+       <li>
         <a href="login.html">
          Login
         </a>
@@ -145,8 +150,8 @@
            <input type="hidden" name="name" value="{{candidate.name}}"/>
            <input type="hidden" name="title" value="{{candidate.title}}"/>
         </form>
-         <a href="#" onclick='document.forms["myform"].submit(); return false;'></a>
-        <div class="cand-hld" href="#" onclick='document.forms["{{candidate.name}}myform"].submit(); return false;'>
+         <a href="#" onclick='showOutput{{candidate.name}}()'></a>
+        <div class="cand-hld" href="#" onclick='showOutput{{candidate.name}}()'>
           {% for i in voted %}
           {% if candidate.name in i.name %}
          <div class="decision">
@@ -166,6 +171,17 @@
          <div class="cand-name">
           {{candidate.name}}
          </div>
+         <script>
+         function showOutput{{candidate.name}} () {
+           if (confirm('Are you sure you want to vote {{candidate.name}} for {{election.name}} ?')) {
+           // Save it!
+            document.getElementById("{{candidate.name}}myform").submit();
+          } else {
+            console.log('Thing was not saved to the database.');
+           // Do nothing!
+          }
+      }
+         </script>
         </div>
     {% endif %}
     {% endfor %}

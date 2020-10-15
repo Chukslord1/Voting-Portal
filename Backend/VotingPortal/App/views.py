@@ -59,7 +59,7 @@ def register(request):
                 user = User.objects.create(username=username,first_name=name,password=password1, email=email)
                 user.set_password(user.password)
                 user.save()
-                profile=UserProfile.objects.create(user=user,username=username,phone=phone,address=address,sex=sex,date_of_birth=dob,admission_year=admission_year,graduation_year=graduation_year,chapter=chapter,attendance_status=attendance_status,dishonesty_status=dishonesty_status,image=image)
+                profile=UserProfile.objects.create(user=user,username=username,phone=phone,address=address,sex=sex,date_of_birth=dob,admission_year=admission_year,graduation_year=graduation_year,thsosa_chapter=chapter,attendance_status=attendance_status,dishonesty_status=dishonesty_status,image=image)
                 profile.save()
                 def_vote=Vote.objects.create(user=username,name="0000",title="0000")
                 def_vote.save()
@@ -72,7 +72,7 @@ def register(request):
 
 
 def create_vote(request):
-    context={"elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all(),"voted":Vote.objects.filter(user=request.user)}
+    context={"elections":Election.objects.all(),"candidates":Candidate.objects.filter(approved=True),"times":Time.objects.all(),"voted":Vote.objects.filter(user=request.user)}
     if request.user.is_authenticated:
         if request.method=="POST":
             title=request.POST.get("title")
@@ -104,17 +104,17 @@ def create_vote(request):
                         vote_count_percent_save.percent=percent
                         vote_count_percent_save.save()
 
-                    context={"message":"vote  placed","elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all(),"voted":Vote.objects.filter(user=request.user)}
+                    context={"message":"vote  placed","elections":Election.objects.all(),"candidates":Candidate.objects.filter(approved=True),"times":Time.objects.all(),"voted":Vote.objects.filter(user=request.user)}
                     return render(request,"candidates.html",context)
                 elif datetime.datetime.now(timezone.utc)>Time.objects.get().end:
-                    context={"message": "Voting Closed","elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all(),"voted":Vote.objects.filter(user=request.user)}
+                    context={"message": "Voting Closed","elections":Election.objects.all(),"candidates":Candidate.objects.filter(approved=True),"voted":Vote.objects.filter(user=request.user)}
                     return render(request,"candidates.html",context)
                 else:
                     print("hello")
-                    context={"message":"vote  time not yet","elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all(),"voted":Vote.objects.filter(user=request.user)}
+                    context={"message":"vote  time not yet","elections":Election.objects.all(),"candidates":Candidate.objects.filter(approved=True),"voted":Vote.objects.filter(user=request.user)}
                     return render(request,"candidates.html",context)
             elif Vote.objects.filter(title=title,user=user).count()>0:
-                context={"message":"You have already voted in this category","elections":Election.objects.all(),"candidates":Candidate.objects.all(),"times":Time.objects.all(),"voted":Vote.objects.filter(user=request.user)}
+                context={"message":"You have already voted in this category","elections":Election.objects.all(),"candidates":Candidate.objects.filter(approved=True),"times":Time.objects.all(),"voted":Vote.objects.filter(user=request.user)}
                 return render(request,"candidates.html",context)
             else:
                 print("hello worldl")
@@ -126,12 +126,12 @@ def create_vote(request):
 
 
 def activity(request):
-    context={"elections":Election.objects.all(),"results":Candidate.objects.filter(title__icontains="president")}
+    context={"elections":Election.objects.all(),"results":Candidate.objects.filter(approved=True)}
     return render(request,"activity.html",context)
 
 
 def results(request):
-    context={"elections":Election.objects.all(),"results":Candidate.objects.all()}
+    context={"elections":Election.objects.all(),"results":Candidate.objects.filter(approved=True)}
     return render(request,"results.html",context)
 def candidate_reg(request):
     if request.method=="POST":
@@ -157,9 +157,13 @@ def candidate_reg(request):
         dishonesty_status=request.POST.get("dishonesty")
         position=request.POST.get("position")
         image=request.FILES.get("image")
-        candidate_reg=Candidate_Reg.objects.create(title=title,profile=profile,last_name=lastname,other_name=othername,admission_date=admisson_date,graduation_date=graduation_date,address=address,sex=sex,date_of_birth=date_of_birth,occupation=occupation,email=email,phone=phone,education=education,chapter=chapter,chapter_year=chapter_year,executive_status=executive_status,executive_officer=executive_officer,financial=financial,attendance_status=attendance_status,dishonesty_status=dishonesty_status,position=position,image=image)
+        candidate_reg=Candidate.objects.create(title=position,name_title=title,profile=profile,name=lastname,other_name=othername,admission_date=admission_date,graduation_date=graduation_date,address=address,sex=sex,date_of_birth=date_of_birth,occupation=occupation,email=email,phone=phone,education=education,chapter=chapter,chapter_year=chapter_year,executive_status=executive_status,executive_officer=executive_officer,financial=financial,attendance_status=attendance_status,dishonesty_status=dishonesty_status,position=position,image=image)
         candidate_reg.save()
         context={"message":"Your Registration Is Successful...Please await an Email From Us in A Few Days Time"}
         return render(request,"candidate_reg.html",context)
     else:
         return render(request,"candidate_reg.html")
+
+def voters_approved(request):
+    context={"approved":UserProfile.objects.filter(approved=True)}
+    return render(request,"voters-approved.html",context)

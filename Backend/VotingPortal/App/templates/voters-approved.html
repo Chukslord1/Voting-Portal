@@ -11,24 +11,32 @@
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css"/>
   <link href="{% static 'assets/css/fonts.css' %}" rel="stylesheet" type="text/css">
    <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" type="text/css"/>
-   <link href="{% static 'assets/css/owl_theme.css' %}" rel="stylesheet" type="text/css"/>
+   <link href="{% static 'assets/css/owl_theme.cs' %}s" rel="stylesheet" type="text/css"/>
    <link href="{% static 'assets/css/owl.carousel.min.css' %}" rel="stylesheet" type="text/css"/>
    <link href="{% static 'assets/css/owl.theme.default.min.css' %}" rel="stylesheet" type="text/css"/>
    <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet"/>
-   <script src="{% static 'assets/js/jquery-1.8.2.js' %}" type="text/javascript">
+   <script src="assets/js/jquery-1.8.2.js" type="text/javascript">
    </script>
-   <script src="{% static 'assets/js/jquery-scrolltofixed.js' %}" type="text/javascript">
+   <script src="assets/js/jquery-scrolltofixed.js" type="text/javascript">
    </script>
-   <script src="{% static 'assets/js/prefixfree-1.0.7.js' %}" type="text/javascript">
+   <script src="assets/js/prefixfree-1.0.7.js" type="text/javascript">
    </script>
-   <script src="{% static 'assets/js/script.js' %}" type="text/javascript">
+   <script src="assets/js/script.js" type="text/javascript">
    </script>
-   <script src="{% static 'assets/js/owl.carousel.min.js' %}" type="text/javascript">
+   <script src="assets/js/owl.carousel.min.js" type="text/javascript">
    </script>
-   <script src="{% static 'assets/js/jquery.flexslider-min.js' %}" type="text/javascript">
+   <script src="assets/js/jquery.flexslider-min.js" type="text/javascript">
    </script>
   </link>
  </head>
+ <style>
+ #button {
+     width:30px;
+     height: 30px;
+     border-radius:100%;
+     background-color:blue;
+ }
+</style>
  <body>
   <div class="clearfix" id="main_wrapper">
    <div class="header">
@@ -98,13 +106,7 @@
       <div class="pg-hdr-card clearfix">
        <div class="col-1">
         <div class="hdr-title">
-         Final Results
-        </div>
-        <div class="row">
-         <span>
-          Votes Closed:
-         </span>
-         26/10/2020 04:30PM GMT+1
+         The Voters Approved
         </div>
        </div>
        <div class="col-2">
@@ -115,40 +117,18 @@
     </div>
     <div class="section">
      <div class="inner_wrap">
-      {% for election in elections %}
-      <div class="candidate-card">
-        <br>
-       <div class="position-desc">
-        The next {{election.name}} is...
-       </div>
-       <div class="cand-wrap results-wrap clearfix">
-         {% for item in results %}
-         {% if item.title == election.name %}
-        <div class="cand-hld clearfix">
-         <div class="cand-avatar">
-          <img src="{{item.image.url}}"/>
-         </div>
-         <div class="cand-name">
-          {{item.name}}
-         </div>
-         <div class="v-det clearfix">
-          <div class="v-bar">
-           <div class="v-progress" style="width: {{item.percent}}%;">
+       <div class="candidate-card">
+         <div class="cand-wrap results-wrap clearfix">
+           {% for item in approved %}
+           <div class="cand-hld clearfix">
+             <div class="cand-avatar">
+               <img src="{% get_media_prefix %}{{item.image}}"/>
+             </div>
+             <div class="cand-name">{{item.user.first_name}}</div>
            </div>
-          </div>
-          <div class="v-per">
-           {{item.percent}}%
-          </div>
-          <div class="v-count">
-           {{item.vote}} votes
-          </div>
+           {% endfor %}
          </div>
-        </div>
-        {% endif %}
-        {% endfor %}
        </div>
-      </div>
-      {% endfor %}
      </div>
     </div>
    </div>
