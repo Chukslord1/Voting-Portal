@@ -24,6 +24,8 @@ class Candidate(models.Model):
 
 class Election(models.Model):
     name=models.TextField()
+    def __str__(self):
+        return self.name
 
 class Time(models.Model):
     start=models.DateTimeField()
@@ -33,6 +35,17 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
     username=models.CharField(max_length=100, null=True,blank=True)
     phone=models.CharField(max_length=100, null=True,blank=True)
+    address=models.CharField(max_length=100, null=True,blank=True)
+    sex=models.CharField(max_length=100, null=True,blank=True)
+    date_of_birth=models.CharField(max_length=100, null=True,blank=True)
+    admission_year=models.CharField(max_length=100, null=True,blank=True)
+    graduation_year=models.CharField(max_length=100, null=True,blank=True)
+    thsosa_chapter=models.CharField(max_length=100, null=True,blank=True)
+    registration_year=models.CharField(max_length=100, null=True,blank=True)
+    attendance_status=models.TextField(null=True,blank=True)
+    dishonesty_status=models.TextField(null=True,blank=True)
+    image=models.ImageField(null=True,blank=True)
+
 
 
 class Candidate_Reg(models.Model):

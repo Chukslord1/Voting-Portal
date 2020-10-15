@@ -110,12 +110,15 @@
     </div>
     <div class="section">
      <div class="inner_wrap">
+       {% for election in elections %}
       <div class="candidate-card">
+        <br>
        <div class="position-desc">
-        Who will be the next President?
+        Who will be the next {{election.name}}?
        </div>
        <div class="cand-wrap v-act clearfix">
          {% for item in results %}
+         {% if item.title == election.name %}
         <div class="cand-hld">
          <div class="cand-name">
           {{item.name}}
@@ -133,9 +136,11 @@
           </div>
          </div>
         </div>
+        {% endif %}
         {% endfor %}
        </div>
       </div>
+      {% endfor %}
      </div>
     </div>
    </div>

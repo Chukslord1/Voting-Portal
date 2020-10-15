@@ -401,6 +401,51 @@ window.onload = function () {
   </head>
 
   <body>
+    <div class="clearfix" id="main_wrapper">
+     <div class="header">
+      <div class="hdr clearfix">
+       <div class="menu_icon">
+        <div class="burger_icon">
+         <span class="burger_bar_top">
+         </span>
+         <span class="burger_bar_middle">
+         </span>
+         <span class="burger_bar_bottom">
+         </span>
+        </div>
+        <div class="menu_text">
+         Menu
+        </div>
+       </div>
+       <div class="brandname">
+        <a href="">
+         THSOSA
+        </a>
+       </div>
+       <div class="menu">
+        <ul>
+         <li>
+          <a href="login.html">
+           Login
+          </a>
+         </li>
+         <li>
+          <a href="register.html">
+           Register
+          </a>
+         </li>
+         <li>
+          <a href="candidate_reg">
+            Candidate Registeration
+          </a>
+         </li>
+        </ul>
+       </div>
+      </div>
+     </div>
+     <div class="body-wrap">
+      <div class="section">
+       <div class="inner_wrap">
     <div class="testbox">
       <form  id="candidate_form" action="{% url 'APP:candidate_reg' %}" enctype="multipart/form-data" method="POST">
         {% csrf_token %}
@@ -524,6 +569,10 @@ window.onload = function () {
         </button>
         </div>
       </form>
+    </div>
+   </div>
+  </div>
+ </div>
     </div>
      </div>
     </div>

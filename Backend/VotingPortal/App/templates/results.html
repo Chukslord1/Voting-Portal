@@ -110,12 +110,15 @@
     </div>
     <div class="section">
      <div class="inner_wrap">
+      {% for election in elections %}
       <div class="candidate-card">
+        <br>
        <div class="position-desc">
-        The next President is...
+        The next {{election.name}} is...
        </div>
        <div class="cand-wrap results-wrap clearfix">
          {% for item in results %}
+         {% if item.title == election.name %}
         <div class="cand-hld clearfix">
          <div class="cand-avatar">
           <img src="{{item.image.url}}"/>
@@ -136,9 +139,11 @@
           </div>
          </div>
         </div>
+        {% endif %}
         {% endfor %}
        </div>
       </div>
+      {% endfor %}
      </div>
     </div>
    </div>

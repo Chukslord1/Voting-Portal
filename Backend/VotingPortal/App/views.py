@@ -34,12 +34,22 @@ def login(request):
 
 def register(request):
     if request.method=="POST":
-        name= request.POST['name']
-        phone=request.POST['phone']
-        username = request.POST['username']
-        email = request.POST['email']
-        password1 = request.POST['password1']
-        password2 = request.POST['password2']
+        name= request.POST.get('name')
+        phone=request.POST.get('phone')
+        address=request.POST.get('address')
+        sex=request.POST.get('sex')
+        dob=request.POST.get('dob')
+        admission_year=request.POST.get('admission_year')
+        graduation_year=request.POST.get('graduation_year')
+        chapter=request.POST.get('chapter')
+        chapter_year=request.POST.get('chapter_year')
+        attendance_status=request.POST.get("attendance_status")
+        dishonesty_status=request.POST.get("dishonesty")
+        image=request.FILES.get("image")
+        username = request.POST.get("username")
+        email = request.POST.get("email")
+        password1 = request.POST.get("password1")
+        password2 = request.POST.get("password2")
 
         if password1 == password2:
             if UserProfile.objects.filter(phone=phone).exists() or User.objects.filter(username=username).exists():
@@ -49,7 +59,7 @@ def register(request):
                 user = User.objects.create(username=username,first_name=name,password=password1, email=email)
                 user.set_password(user.password)
                 user.save()
-                profile=UserProfile.objects.create(user=user,username=username,phone=phone)
+                profile=UserProfile.objects.create(user=user,username=username,phone=phone,address=address,sex=sex,date_of_birth=dob,admission_year=admission_year,graduation_year=graduation_year,chapter=chapter,attendance_status=attendance_status,dishonesty_status=dishonesty_status,image=image)
                 profile.save()
                 def_vote=Vote.objects.create(user=username,name="0000",title="0000")
                 def_vote.save()
@@ -116,12 +126,12 @@ def create_vote(request):
 
 
 def activity(request):
-    context={"results":Candidate.objects.filter(title__icontains="president")}
+    context={"elections":Election.objects.all(),"results":Candidate.objects.filter(title__icontains="president")}
     return render(request,"activity.html",context)
 
 
 def results(request):
-    context={"results":Candidate.objects.filter(title__icontains="president")}
+    context={"elections":Election.objects.all(),"results":Candidate.objects.all()}
     return render(request,"results.html",context)
 def candidate_reg(request):
     if request.method=="POST":
