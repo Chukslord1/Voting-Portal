@@ -9,8 +9,7 @@ from datetime import timezone
 # Create your views here.
 
 def index(request):
-    honduras="happy hactober"
-    return HttpResponse("Hello World")
+    return render(request,"index_new.html")
 
 
 def login(request):
@@ -24,7 +23,7 @@ def login(request):
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            return redirect("candidates.html")
+            return redirect("candidates_New.html")
         else:
             context={"message":"Invalid login credentials"}
             return render(request,"login.html",context)
@@ -105,29 +104,29 @@ def create_vote(request):
                         vote_count_percent_save.save()
 
                     context={"message":"vote  placed","elections":Election.objects.all(),"candidates":Candidate.objects.filter(approved=True),"times":Time.objects.all(),"voted":Vote.objects.filter(user=request.user)}
-                    return render(request,"candidates.html",context)
+                    return render(request,"candidates_New.html",context)
                 elif datetime.datetime.now(timezone.utc)>Time.objects.get().end:
                     context={"message": "Voting Closed","elections":Election.objects.all(),"candidates":Candidate.objects.filter(approved=True),"voted":Vote.objects.filter(user=request.user)}
-                    return render(request,"candidates.html",context)
+                    return render(request,"candidates_New.html",context)
                 else:
                     print("hello")
                     context={"message":"vote  time not yet","elections":Election.objects.all(),"candidates":Candidate.objects.filter(approved=True),"voted":Vote.objects.filter(user=request.user)}
-                    return render(request,"candidates.html",context)
+                    return render(request,"candidates_New.html",context)
             elif Vote.objects.filter(title=title,user=user).count()>0:
                 context={"message":"You have already voted in this category","elections":Election.objects.all(),"candidates":Candidate.objects.filter(approved=True),"times":Time.objects.all(),"voted":Vote.objects.filter(user=request.user)}
-                return render(request,"candidates.html",context)
+                return render(request,"candidates_New.html",context)
             else:
                 print("hello worldl")
                 return HttpResponse("Error Creating Vote Please Check Arguments")
         else:
-            return render(request,"candidates.html",context)
+            return render(request,"candidates_New.html",context)
     else:
         return HttpResponse("You are not logged in")
 
 
 def activity(request):
-    context={"elections":Election.objects.all(),"results":Candidate.objects.filter(approved=True)}
-    return render(request,"activity.html",context)
+    context={"elections":Election.objects.all(),"results":Candidate.objects.filter(approved=True),"times":Time.objects.all()}
+    return render(request,"activity_new.html",context)
 
 
 def results(request):

@@ -1,0 +1,188 @@
+{% load static %}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport"/>
+  <title>
+   THSOSA
+  </title>
+  <link href="{% static 'assets/img/gr8dreams-logo.png' %}" rel="icon" type="image/png"/>
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css"/>
+  <link href="{% static 'assets/css/fonts.css' %}" rel="stylesheet" type="text/css">
+   <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" type="text/css"/>
+   <link href="{% static 'assets/css/owl_theme.css' %}" rel="stylesheet" type="text/css"/>
+   <link href="{% static 'assets/css/owl.carousel.min.css' %}" rel="stylesheet" type="text/css"/>
+   <link href="{% static 'assets/css/owl.theme.default.min.css' %}" rel="stylesheet" type="text/css"/>
+   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet"/>
+   <script src="{% static 'assets/js/jquery-1.8.2.js' %}" type="text/javascript">
+   </script>
+   <script src="{% static 'assets/js/jquery-scrolltofixed.js' %}" type="text/javascript">
+   </script>
+   <script src="{% static 'assets/js/prefixfree-1.0.7.js' %}" type="text/javascript">
+   </script>
+   <script src="{% static 'assets/js/script.js' %}" type="text/javascript">
+   </script>
+   <script src="{% static 'assets/js/owl.carousel.min.js' %}" type="text/javascript">
+   </script>
+   <script src="{% static 'assets/js/jquery.flexslider-min.js' %}" type="text/javascript">
+   </script>
+  </link>
+ </head>
+ <body>
+  <div class="clearfix" id="main_wrapper">
+   <div class="header">
+    <div class="hdr clearfix">
+     <div class="menu_icon">
+      <div class="burger_icon">
+       <span class="burger_bar_top">
+       </span>
+       <span class="burger_bar_middle">
+       </span>
+       <span class="burger_bar_bottom">
+       </span>
+      </div>
+      <div class="menu_text">
+       Menu
+      </div>
+     </div>
+     <div class="brandname">
+      <a href="">
+       THSOSA
+      </a>
+     </div>
+     <div class="menu">
+       <ul>
+        <li>
+         <a href="index.html">
+          Home
+         </a>
+        </li>
+        <li>
+         <a href="candidates.html">
+          Candidates
+         </a>
+        </li>
+        <li>
+         <a href="activity.html">
+          Voter Activity
+         </a>
+        </li>
+        <li>
+         <a href="results.html">
+          Results
+         </a>
+        </li>
+        <li>
+         <a href="voters-approved">
+          Voters
+         </a>
+        </li>
+        <li>
+         <a href="login.html">
+          Login
+         </a>
+        </li>
+        <li>
+         <a href="register.html">
+          Register
+         </a>
+        </li>
+       </ul>
+     </div>
+    </div>
+   </div>
+   <div class="body-wrap">
+    <div class="section">
+     <div class="inner_wrap">
+       <div class="pg-hdr-card clearfix">
+        <div class="col-1">
+         <div class="hdr-title">
+          The Candidates
+         </div>
+         <div class="row">
+          <span>
+           Voting Start:
+          </span>
+         {% for time in times %}{{time.start}}{% endfor %}
+         </div>
+         <div class="row">
+          <span>
+           Voting Close:
+          </span>
+         {% for time in times %}{{time.end}}{% endfor %}
+         </div>
+         <div class="row">
+          <span>
+           Instruction:
+          </span>
+          Please view the positions and choices and make your selections.
+         </div>
+        </div>
+        <div class="col-2">
+         THSOSA DECIDES
+        </div>
+       </div>
+     </div>
+    </div>
+    <div class="section">
+     <div class="inner_wrap">
+       <div class="candidate-card">
+       {% for election in elections %}
+       <br>
+        <div class="position-desc">
+         Who do you want to be the next {{election.name}}?
+        </div>
+        {{message}}
+        <div class="cand-wrap clearfix">
+          {% for candidate in candidates %}
+          {% if candidate.title == election.name %}
+          <form id="{{candidate.name}}myform" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="name" value="{{candidate.name}}"/>
+            <input type="hidden" name="title" value="{{candidate.title}}"/>
+         </form>
+          <a href="#" onclick='showOutput{{candidate.name}}()'></a>
+         <div class="cand-hld" href="#" onclick='showOutput{{candidate.name}}()'>
+           {% for i in voted %}
+           {% if candidate.name in i.name %}
+          <div class="decision">
+            <input type="checkbox" name="vote" value="{{candidate.name}}" checked/>
+          </div>
+          {% else %}
+          {% if candidate.name  in i.name %}
+          <div class="decision">
+            <input type="checkbox" name="vote" value="{{candidate.name}}"/>
+          </div>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+          <div class="cand-avatar">
+           <img src="{{candidate.image.url}}"/>
+          </div>
+          <div class="cand-name">
+           {{candidate.name}}
+          </div>
+          <script>
+          function showOutput{{candidate.name}} () {
+            if (confirm('Are you sure you want to vote {{candidate.name}} for {{election.name}} ?')) {
+            // Save it!
+             document.getElementById("{{candidate.name}}myform").submit();
+           } else {
+             console.log('Thing was not saved to the database.');
+            // Do nothing!
+           }
+       }
+          </script>
+         </div>
+     {% endif %}
+     {% endfor %}
+        </div>
+        {% endfor %}
+       </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

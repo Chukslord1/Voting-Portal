@@ -8,7 +8,7 @@ app_name = "APP"
 urlpatterns = [
 
     path("", views.login, name="login"),
-    path("index.html", views.create_vote, name="create_vote"),
+    path("index.html", views.index, name="index"),
     path("candidates.html", views.create_vote, name="create_vote"),
     path("results.html", views.results, name="results"),
     path("activity.html", views.activity, name="activity"),
