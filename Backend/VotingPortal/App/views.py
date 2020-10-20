@@ -23,7 +23,7 @@ def login(request):
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            return redirect("candidates_New.html")
+            return redirect("candidates.html")
         else:
             context={"message":"Invalid login credentials"}
             return render(request,"login.html",context)
