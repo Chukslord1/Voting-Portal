@@ -423,21 +423,23 @@ window.onload = function () {
        </div>
        <div class="menu">
         <ul>
-          <li>
-           <a href="candidate_reg">
-            Candidate Registration
-           </a>
-          </li>
-         <li>
-          <a href="login.html">
-           Login
-          </a>
-         </li>
-         <li>
-          <a href="register.html">
-           Register
-          </a>
-         </li>
+          <ul>
+            <li>
+             <a href="register.html">
+              Voter Registration
+             </a>
+            </li>
+            <li>
+             <a href="candidate_reg">
+              Contestant Nomination Form
+             </a>
+            </li>
+           <li>
+            <a href="login.html">
+             Login
+            </a>
+           </li>
+          </ul>
         </ul>
        </div>
       </div>
@@ -446,20 +448,22 @@ window.onload = function () {
       <div class="section">
        <div class="inner_wrap">
     <div class="testbox">
+      {% if message_2 %}
+      <h2 style="color:red;">{{message_2}}</h2>
+      {% elif message_3 %}
+      <h2 style="color:red;">{{message_3}}</h2>
+      {% else %}
       <form  id="candidate_form" action="{% url 'APP:register' %}" enctype="multipart/form-data" method="POST">
         {% csrf_token %}
         <h2 style="color:red;">{{message}}</h2>
         <h1>THSOSA VOTER REGISTRATION FORM</h1>
-        <h4>Candidate Info<span>*</span></h4>
+        <h4>Voter Info<span>*</span></h4>
 
         <h4>Name<span>*</span></h4>
         <div class="title-block">
-          <input id="surname" class="name" type="text" name="name" placeholder="Full Name" />
+          <input id="surname" class="name" type="text" name="lastname" placeholder="Surname" />
+          <input id="othername" class="name" type="text" name="name" placeholder="Other names" />
         </div>
-        <h4>Username<span>*</span></h4>
-        <input id="surname" class="name" type="text" name="username" placeholder="Username" />
-        <h4>Address<span>*</span></h4>
-        <input id="address" type="text" name="address" />
         <h4>Sex<span>*</span></h4>
         <select id="sex" name="sex">
           <option value="male"> Male</option>
@@ -468,12 +472,10 @@ window.onload = function () {
         <h4>Year of Admission Into THS<span>*</span></h4>
         <input id="admission_year" type="text" name="admission_year" />
         <h4>Year of Graduation From THS<span>*</span></h4>
-        <input id="graduation_year" type="text" name="graduation_year" />
-        <h4>Occupation<span>*</span></h4>
-        <input id="occupation" type="text" name="occupation" />
+        <input id="graduation_year" type="text" name="graduation_year"  required/>
         <h4>Email Address<span>*</span></h4>
         <input id="email" type="text" name="email" />
-        <h4>Phone Number<span>*</span></h4>
+        <h4>Mobile Number<span>*</span></h4>
         <input id="phone" type="text" name="phone"/>
         <h4>THSOSA CHAPTER<span>*</span></h4>
         <select id="chapter" name="chapter">
@@ -485,8 +487,6 @@ window.onload = function () {
             <option value="port harcourt">Port Harcourt</option>
             <option value="warri">Warri</option>
         </select>
-        Upload Your Picture
-        <input name="image" type="file" accept="image/x-png,image/gif,image/jpeg"/>
         <h4>Password</h4>
         <input type="password" name="password1"/>
         <h4>Confirm Password</h4>
@@ -498,6 +498,7 @@ window.onload = function () {
         </button>
         </div>
       </form>
+      {% endif %}
     </div>
    </div>
   </div>

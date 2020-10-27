@@ -447,6 +447,11 @@ window.onload = function () {
       <div class="section">
        <div class="inner_wrap">
     <div class="testbox">
+      {% if message_2 %}
+      <h2 style="color:red;">{{message_2}}</h2>
+      {% elif message_3 %}
+      <h2 style="color:red;">{{message_3}}</h2>
+      {% else %}
       <form  id="candidate_form" action="{% url 'APP:candidate_reg' %}" enctype="multipart/form-data" method="POST">
         {% csrf_token %}
         <h2 style="color:red;">{{message}}</h2>
@@ -462,7 +467,7 @@ window.onload = function () {
             <option value="mrs">Mrs</option>
             <option value="mr">Mr</option>
           </select>
-          <input id="surname" class="name" type="text" name="lastname" placeholder="Last Name" />
+          <input id="surname" class="name" type="text" name="lastname" placeholder="Surname" />
           <input id="othername" class="name" type="text" name="othername" placeholder="Other names" />
         </div>
         <h4>Address<span>*</span></h4>
@@ -476,12 +481,12 @@ window.onload = function () {
         <input id="occupation" type="text" name="occupation" />
         <h4>Email Address<span>*</span></h4>
         <input id="email" type="text" name="email" />
-        <h4>Contact Number<span>*</span></h4>
+        <h4>Mobile Number<span>*</span></h4>
         <input id="phone" type="text" name="phone"/>
         <h4>Year Of Admission Into THS</h4>
         <input id="admisson_date" type="date" name="admission_date"/>
         <h4>Year Of Graduation From THS</h4>
-        <input id="graduation_date" type="date" name="graduation_date"/>
+        <input id="graduation_date" type="date" name="graduation_date" required/>
         <h4>Profile(Tell Us About Yourself)</h4>
         <textarea id="profile" name="profile" rows="4" cols="50"></textarea>
         <h4>Educational Qualifications</h4>
@@ -499,7 +504,7 @@ window.onload = function () {
           <option value="warri">Warri</option>
         </select>
         <h4>Year of Registration with Chapter</h4>
-        <input id="chapter_year" type="text" name="chapter_year"/>
+        <input id="chapter_year" type="text" name="chapter_year" required/>
         <h4>Have YOU Held an Executive Position in A Chapter/ National?</h4>
         <select id="executive" name="executive">
           <option value="" selected>Not Selected</option>
@@ -567,6 +572,7 @@ window.onload = function () {
         </button>
         </div>
       </form>
+      {% endif %}
     </div>
    </div>
   </div>

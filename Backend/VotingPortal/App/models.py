@@ -49,8 +49,11 @@ class Election(models.Model):
         return self.name
 
 class Time(models.Model):
+    name=models.TextField(null=True,blank=True)
     start=models.DateTimeField()
     end=models.DateTimeField()
+    def __str__(self):
+        return self.name
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)

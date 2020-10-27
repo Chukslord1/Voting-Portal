@@ -1,0 +1,459 @@
+{% load static %}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport"/>
+  <title>
+   THSOSA
+  </title>
+  <link href="{% static 'assets/img/gr8dreams-logo.png' %}" rel="icon" type="image/png"/>
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css"/>
+  <link href="{% static 'assets/css/fonts.css' %}" rel="stylesheet" type="text/css">
+   <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" type="text/css"/>
+   <link href="{% static 'assets/css/owl_theme.css' %}" rel="stylesheet" type="text/css"/>
+   <link href="{% static 'assets/css/owl.carousel.min.css' %}" rel="stylesheet" type="text/css"/>
+   <link href="{% static 'assets/css/owl.theme.default.min.css' %}" rel="stylesheet" type="text/css"/>
+   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet"/>
+   <script src="{% static 'assets/js/jquery-1.8.2.js' %}" type="text/javascript">
+   </script>
+   <script src="{% static 'assets/js/jquery-scrolltofixed.js' %}" type="text/javascript">
+   </script>
+   <script src="{% static 'assets/js/prefixfree-1.0.7.js' %}" type="text/javascript">
+   </script>
+   <script src="{% static 'assets/js/script.js' %}" type="text/javascript">
+   </script>
+   <script src="{% static 'assets/js/owl.carousel.min.js' %}" type="text/javascript">
+   </script>
+   <script src="{% static 'assets/js/jquery.flexslider-min.js' %}" type="text/javascript">
+   </script>
+  </link>
+ </head>
+ <style>
+ body {
+   font-family: Arial;
+   font-size: 17px;
+   padding: 8px;
+ }
+
+ * {
+   box-sizing: border-box;
+ }
+
+ .row {
+   display: -ms-flexbox; /* IE10 */
+   display: flex;
+   -ms-flex-wrap: wrap; /* IE10 */
+   flex-wrap: wrap;
+   margin: 0 -16px;
+ }
+
+ .col-25 {
+   -ms-flex: 25%; /* IE10 */
+   flex: 25%;
+ }
+
+ .col-50 {
+   -ms-flex: 50%; /* IE10 */
+   flex: 50%;
+ }
+
+ .col-75 {
+   -ms-flex: 75%; /* IE10 */
+   flex: 75%;
+ }
+
+ .col-25,
+ .col-50,
+ .col-75 {
+   padding: 0 16px;
+ }
+
+ .container {
+   background-color: #f2f2f2;
+   padding: 5px 20px 15px 20px;
+   border: 1px solid lightgrey;
+   border-radius: 3px;
+ }
+
+ input[type=text] {
+   width: 100%;
+
+ }
+ input[type=date] {
+   width: 100%;
+   margin-bottom: 20px;
+   padding: 12px;
+   border: 1px solid #ccc;
+   border-radius: 3px;
+ }
+
+ label {
+   margin-bottom: 10px;
+   display: block;
+ }
+
+ .icon-container {
+   margin-bottom: 20px;
+   padding: 7px 0;
+   font-size: 24px;
+ }
+
+ .btn {
+   background-color: #4CAF50;
+   color: white;
+   padding: 12px;
+   margin: 10px 0;
+   border: none;
+   width: 100%;
+   border-radius: 3px;
+   cursor: pointer;
+   font-size: 17px;
+ }
+
+ .btn:hover {
+   background-color: #45a049;
+ }
+
+ a {
+   color: #2196F3;
+ }
+
+ hr {
+   border: 1px solid lightgrey;
+ }
+
+ span.price {
+   float: right;
+   color: grey;
+ }
+
+ /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+ @media (max-width: 800px) {
+   .row {
+     flex-direction: column-reverse;
+   }
+   .col-25 {
+     margin-bottom: 20px;
+   }
+ }
+ </style>
+ <body>
+
+    <div class="section">
+     <div class="inner_wrap">
+       <!DOCTYPE html>
+<html>
+  <head>
+    <title>Bank Customer Feedback Form</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      body, div, form, input, select {
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #666;
+      line-height: 22px;
+      }
+      h1, h4 {
+      margin: 15px 0 4px;
+      font-weight: 400;
+      }
+      h4 {
+      margin: 20px 0 4px;
+      font-weight: 400;
+      }
+      span {
+      color: red;
+      }
+      .small {
+      font-size: 10px;
+      line-height: 18px;
+      }
+      .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 3px;
+      }
+      form {
+      width: 100%;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 2px 5px #ccc;
+      }
+      input {
+      width: calc(100% - 10px);
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      vertical-align: middle;
+      }
+      input:hover, textarea:hover, select:hover {
+      outline: none;
+      border: 1px solid #095484;
+      background: #e6eef7;
+      }
+      .title-block select, .title-block input {
+      margin-bottom: 10px;
+      }
+      select {
+      padding: 7px 0;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      background: transparent;
+      }
+      select, table {
+      width: 100%;
+      }
+      option {
+      background: #fff;
+      }
+      .day-visited, .time-visited {
+      position: relative;
+      }
+      input[type="time"]::-webkit-inner-spin-button {
+      margin: 2px 22px 0 0;
+      }
+      .day-visited i, .time-visited i, input[type="dates"]::-webkit-calendar-picker-indicator {
+      position: absolute;
+      top: 8px;
+      font-size: 20px;
+      }
+      .day-visited i, .time-visited i {
+      right: 5px;
+      z-index: 1;
+      color: #a9a9a9;
+      }
+      [type="dates"]::-webkit-calendar-picker-indicator {
+      right: 0;
+      z-index: 2;
+      opacity: 0;
+      }
+      .question-answer label {
+      display: block;
+      padding: 0 20px 10px 0;
+      }
+      .question-answer input {
+      width: auto;
+      margin-top: -2px;
+      }
+      th, td {
+      width: 18%;
+      padding: 15px 0;
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+      vertical-align: unset;
+      line-height: 18px;
+      font-weight: 400;
+      word-break: break-all;
+      }
+      .first-col {
+      width: 25%;
+      text-align: left;
+      }
+      textarea {
+      width: calc(100% - 6px);
+      }
+      .btn-block {
+      margin-top: 20px;
+      text-align: center;
+      }
+      button {
+      width: 150px;
+      padding: 10px;
+      border: none;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      background-color: #095484;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      background-color: #0666a3;
+      }
+      @media (min-width: 568px) {
+      .title-block {
+      display: flex;
+      justify-content: space-between;
+      }
+      .title-block select {
+      width: 30%;
+      margin-bottom: 0;
+      }
+      .title-block input {
+      width: 31%;
+      margin-bottom: 0;
+      }
+      th, td {
+      word-break: keep-all;
+      }
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    function payWithPaystack(){
+      if (document.getElementById("president").checked == true){
+      var amount=300000;
+    } else if (document.getElementById("vice-president").checked == true){
+      var amount=250000;
+    } else if (document.getElementById("secretary-general").checked == true){
+      var amount=200000;
+    }else if (document.getElementById("assistant-secretary").checked == true){
+      var amount=150000;
+    }else if (document.getElementById("financial-secretary").checked == true){
+      var amount=130000;
+    }
+    else if (document.getElementById("assistant-financial-secretary").checked == true){
+      var amount=120000;
+    }
+    else if (document.getElementById("treasurer").checked == true){
+      var amount=110000;
+    }
+    else if (document.getElementById("public-relations-officer").checked == true){
+      var amount=100000;
+    }
+    else if (document.getElementById("social-welfare-officer").checked == true){
+      var amount=90000;
+    }
+    else if (document.getElementById("provost_1").checked == true){
+      var amount=80000;
+    }
+    else if (document.getElementById("provost_2").checked == true){
+      var amount=70000;
+    }
+    else if (document.getElementById("ex-officio-1").checked == true){
+      var amount=60000;
+    }
+    else if (document.getElementById("ex-officio-2").checked == true){
+      var amount=50000;
+    }
+     else {
+      var amount="";
+    }
+var handler = PaystackPop.setup({
+  key: 'pk_test_2e6c36e35df589cd45c15eca59189df5e3fcc1af',
+  email: "chukslord1@gmail.com",
+  amount: amount,
+  ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+  metadata: {
+     custom_fields: [
+        {
+            display_name: "chukslord1",
+            variable_name: "Afriproperty Basic Subscription Package",
+            value: "+2348012345678"
+        }
+     ]
+  },
+  callback: function(response){
+      alert('success. transaction ref is ' + response.reference);
+      document.getElementById('candidate_form').submit();
+    },
+  onClose: function(){
+      alert('window closed');
+  }
+});
+handler.openIframe();
+}
+  function myFunction() {
+    const newDiv = document.getElementById("testbox");
+    var x = document.createElement("INPUT");
+    x.setAttribute("type", "text");
+    x.setAttribute("placeholder", "Other Qualifications");
+    newDiv.appendChild(x);
+  }
+  $(document).ready(function() {
+    $('#replace').keyup(function() {
+       $('#example').html($(this).val());
+    });
+});
+$(function () {
+        $("#replace",).bind("change keyup",
+  function () {
+      if ($("#replace").val()!= "")
+          $(this).closest("form").find("#myP").removeAttr("style");
+      else
+          $(this).closest("form").find("#myP").attr("disabled", "disabled");
+      });
+        });
+window.onload = function () {
+  var form = document.getElementById('candidate_form');
+  form.button.onclick = function (){
+    for(var i=0; i < form.elements.length; i++){
+      if(form.elements[i].value === '' && form.elements[i].hasAttribute('required')){
+        alert('There are some required fields!');
+        return false;
+      }
+    }
+    form.submit();
+  };
+};
+  </script>
+  </head>
+
+  <body>
+    <div class="clearfix" id="main_wrapper">
+     <div class="header">
+      <div class="hdr clearfix">
+       <div class="menu_icon">
+        <div class="burger_icon">
+         <span class="burger_bar_top">
+         </span>
+         <span class="burger_bar_middle">
+         </span>
+         <span class="burger_bar_bottom">
+         </span>
+        </div>
+        <div class="menu_text">
+         Menu
+        </div>
+       </div>
+       <div class="brandname">
+        <a href="">
+         THSOSA
+        </a>
+       </div>
+       <div class="menu">
+        <ul>
+          <li>
+           <a href="register.html">
+            Voter Registration
+           </a>
+          </li>
+         <li>
+          <a href="login.html">
+           Login
+          </a>
+         </li>
+        </ul>
+       </div>
+      </div>
+     </div>
+     <div class="body-wrap">
+      <div class="section">
+       <div class="inner_wrap">
+    <div class="testbox">
+      <form  id="candidate_form" action="{% url 'APP:candidate_reg' %}" enctype="multipart/form-data" method="POST">
+          <h2 style="color:red;">{{message_2}}</h2>
+      <h2 style="color:red;">{{message_3}}</h2>
+      </form>
+    </div>
+   </div>
+  </div>
+ </div>
+    </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>
