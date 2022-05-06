@@ -4,7 +4,7 @@
 [https://2020election.dscthsosa.org/]
 
 ## dependencies
-#### Python, Django==2.1 
+#### Python, Django==2.1, Pillow
 
 ## run 
 
