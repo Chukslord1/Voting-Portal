@@ -75,6 +75,8 @@ class UserProfile(models.Model):
     image=models.ImageField(null=True,blank=True)
     approved=models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.username
 
 # model for candidate registration
 class Candidate_Reg(models.Model):
