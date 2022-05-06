@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+
+# vote model
 class Vote(models.Model):
     title=models.TextField()
     name=models.TextField()
@@ -11,7 +13,7 @@ class Vote(models.Model):
     def __str__(self):
         return self.title
 
-
+# candidate model for election
 class Candidate(models.Model):
     title=models.TextField(null=True,blank=True)
     name_title=models.TextField(null=True,blank=True)
@@ -48,6 +50,7 @@ class Election(models.Model):
     def __str__(self):
         return self.name
 
+# time schedule model
 class Time(models.Model):
     name=models.TextField(null=True,blank=True)
     start=models.DateTimeField()
@@ -55,6 +58,7 @@ class Time(models.Model):
     def __str__(self):
         return self.name
 
+# models for voters profiles
 class UserProfile(models.Model):
     user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
     username=models.CharField(max_length=100, null=True,blank=True)
@@ -72,7 +76,7 @@ class UserProfile(models.Model):
     approved=models.BooleanField(default=False)
 
 
-
+# model for candidate registration
 class Candidate_Reg(models.Model):
     title=models.TextField(null=True,blank=True)
     profile=models.TextField(null=True,blank=True)
