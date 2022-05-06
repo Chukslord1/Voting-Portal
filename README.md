@@ -1,5 +1,7 @@
 # Voting-Portal
-I person voting has been an issue since the pandemic arrived. This web applications allows it's users to create elections and organise voting activities remotely. Some of the features are:
+![Demo Image](https://imgur.com/81fVDCw)
+
+Voting in person has been an issue since the pandemic arrived. This web applications allows it's users to create elections and organise voting activities remotely. Some of the features are:
 
 ## Election
 The election feature allows users to create and manage multiple elections. Some of its operations are:
